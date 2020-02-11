@@ -10,13 +10,9 @@ function App() {
         <div className='row'>
           <div className='one-half column'>
             <Form />
-
-
           </div>
-
-        </div>
-        
-    </div>
+        </div>  
+      </div>
     </Fragment>
    
   );
