@@ -1,7 +1,7 @@
 import React, {Fragment, useState } from 'react';
 import uuid from 'uuid/v4';
 
-const Form = () => {
+const Form = ({makeTask}) => {
 
 
   const [ task, updateTask] = useState({
@@ -22,7 +22,7 @@ const handleStage = e => {
 }
 
 const submitTask = e => {
-  e.preventDefault()
+      e.preventDefault()
 
       if(name.trim() === '' || type.trim() === '' || date.trim() === '' || description.trim() === '') {
         updateError(true)
@@ -30,6 +30,17 @@ const submitTask = e => {
       } else {
         updateError(false)
       }
+
+      task.id = uuid()
+
+      makeTask(task)
+      
+      updateTask({
+        name: '',
+        type: '',
+        date: '',
+        description: ''
+      })
 }
 
 const { name, type, date, description } = task;

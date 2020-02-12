@@ -1,15 +1,40 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Form from './Form'
+import Task from './Task'
 import '../styles/App.css';
 
 function App() {
+
+
+const [tasks, handleTask] = useState([])
+
+
+const makeTask = task => {
+  handleTask([
+    ...tasks,
+    task
+  ])
+}
+
+
   return (
     <Fragment>
-      <h1>Añade una lista de tarea</h1>
+      <h1>Task App</h1>
       <div className="container">
         <div className='row'>
           <div className='one-half column'>
-            <Form />
+            <Form 
+              makeTask= {makeTask}
+            />
+          </div>
+          <div className='one-half column'>
+            {tasks.map( task => (
+              <Task 
+                task={task}
+                key={task.id}
+              />
+            ))}
+           
           </div>
         </div>  
       </div>
