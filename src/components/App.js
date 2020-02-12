@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Form from './Form'
 import Task from './Task'
 import '../styles/App.css';
@@ -6,8 +6,20 @@ import '../styles/App.css';
 function App() {
 
 
-const [tasks, handleTask] = useState([])
+  let newTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (!newTasks) {
+    newTasks = []
+  }
 
+  const [tasks, handleTask] = useState(newTasks)
+
+  useEffect( () => {
+    if(newTasks) {
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+    } else {
+      localStorage.setItem('tasks', JSON.stringify([]));
+    }
+  }, [tasks]);
 
 const makeTask = task => {
   handleTask([
@@ -16,6 +28,14 @@ const makeTask = task => {
   ])
 }
 
+
+
+const removeTask = id => {
+  const newTask = tasks.filter( task => task.id !== id);
+  handleTask(newTask)
+} 
+
+const title = tasks.length === 0 ? 'no hay tareas' : 'lista de tareas'
 
   return (
     <Fragment>
@@ -28,10 +48,12 @@ const makeTask = task => {
             />
           </div>
           <div className='one-half column'>
+            <h2>{title}</h2>
             {tasks.map( task => (
               <Task 
                 task={task}
                 key={task.id}
+                removeTask={removeTask}
               />
             ))}
            

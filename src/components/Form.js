@@ -34,7 +34,7 @@ const submitTask = e => {
       task.id = uuid()
 
       makeTask(task)
-      
+
       updateTask({
         name: '',
         type: '',
@@ -93,7 +93,7 @@ const { name, type, date, description } = task;
 
       <button
         type='submit'
-        className='u-full-width button-primary'
+        className='u-full-width button-form'
       >Agregar Tarea</button>
     </form>
 </Fragment>
