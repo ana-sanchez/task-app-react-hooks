@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 
 const Task = ({task, removeTask}) => {
 
@@ -15,6 +17,11 @@ const Task = ({task, removeTask}) => {
     </div>
   );
 
+}
+
+Task.propTypes = {
+  task: PropTypes.object.isRequired,
+  removeTask: PropTypes.func.isRequired
 }
 
 export default Task

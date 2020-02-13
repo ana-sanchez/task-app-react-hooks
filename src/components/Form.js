@@ -1,5 +1,6 @@
 import React, {Fragment, useState } from 'react';
 import uuid from 'uuid/v4';
+import PropTypes from 'prop-types'
 
 const Form = ({makeTask}) => {
 
@@ -12,7 +13,6 @@ const Form = ({makeTask}) => {
 });
 
 const [ error, updateError ] = useState(false)
-
 
 const handleStage = e => {
   updateTask({
@@ -99,6 +99,10 @@ const { name, type, date, description } = task;
 </Fragment>
 
   )
+}
+
+Form.propTypes = {
+  makeTask: PropTypes.func.isRequired
 }
 
 export default Form

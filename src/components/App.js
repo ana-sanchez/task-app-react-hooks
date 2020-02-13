@@ -14,6 +14,8 @@ function App() {
   const [tasks, handleTask] = useState(newTasks)
 
   useEffect( () => {
+    let newTasks = JSON.parse(localStorage.getItem('tasks'));
+
     if(newTasks) {
       localStorage.setItem('tasks', JSON.stringify(tasks))
     } else {
